@@ -1,0 +1,243 @@
+# =========================
+#  SISTEMA / GENERALES
+# =========================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.Trash-*
+*~
+
+# Archivos temporales y de respaldo
+*.swp
+*.swo
+*.tmp
+*.temp
+*.bak
+*.old
+*.orig
+*.log
+*.lock
+
+# Comprimidos / empaquetados
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+
+# =========================
+#  EDITORES / IDE
+# =========================
+# IntelliJ IDEA / Android Studio
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# VS Code
+.vscode/
+.history/
+.project
+.settings/
+*.code-workspace
+
+# Eclipse (por si alguien lo usa)
+.project
+.classpath
+.settings/
+bin/
+
+# =========================
+#  JAVA / KOTLIN / SPRING
+# =========================
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/**/build/
+
+# Maven
+target/
+.mvn/
+mvnw
+mvnw.cmd
+
+# Logs de apps
+*.log
+logs/
+spring.log
+
+# Archivos de configuración locales
+application-local.yml
+application-local.properties
+
+# =========================
+#  PYTHON
+# =========================
+# Compilados / cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Entornos virtuales
+.env
+.venv
+env/
+venv/
+ENV/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Herramientas/lint
+.mypy_cache/
+.pytest_cache/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# =========================
+#  WEB / FRONTEND
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Bundlers / builds
+dist/
+build/
+.cache/
+.tmp/
+coverage/
+*.map
+
+# Herramientas de UI/Design
+*.sketch
+*.fig
+*.xd
+
+# Penpot
+front_end_design/**/._*
+front_end_design/**/.thumbs/
+front_end_design/**/.cache/
+
+# =========================
+#  DATOS / SCRAPING
+# =========================
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+*.csv
+*.tsv
+*.parquet
+*.feather
+*.xlsx
+*.xls
+
+scrap_src/downloads/
+scrap_src/data_raw/
+scrap_src/data_tmp/
+scrap_src/data_processed/
+scrap_src/screenshots/
+scrap_src/captures/
+
+# =========================
+#  SEGURIDAD / CLAVES
+# =========================
+*.pem
+*.key
+*.crt
+*.p12
+*.keystore
+*.jks
+*.pfx
+
+# Variables de entorno
+*.env.local
+*.env.development.local
+*.env.test.local
+*.env.production.local
+.env
+
+# =========================
+#  DOCKER / CONTENEDORES
+# =========================
+docker/.env
+docker/.env.*
+docker/*.log
+docker/logs/
+docker/tmp/
+docker/cache/
+docker/.cache/
+
+docker-compose.override.yml
+
+# Volúmenes de bases de datos
+docker/volumes/
+docker/data/
+docker/postgres_data/
+docker/db_data/
+pgdata/
+postgres_data/
+
+# Dumps y backups
+*.sql.dump
+*.dump
+*.backup
+
+# Imágenes exportadas
+docker/*.tar
+docker/*.tar.gz
+
+# =========================
+#  POSTGRESQL LOCAL
+# =========================
+*.psql
+
+# =========================
+#  CHROME / SELENIUM / SCRAPER
+# =========================
+chromedriver
+chromedriver.exe
+chrome-linux/
+chrome-win/
+chrome-mac/
+
+chrome_profile/
+selenium_profile/
+user-data-dir/
+
+*.crdownload
+*.cache.json
+
+# Configuración local del scraper
+scrap_src/.env
+scrap_src/config.local.*
+scrap_src/secrets.*
+
+# =========================
+#  OTROS
+# =========================
+*.thumb
+*.rsuser

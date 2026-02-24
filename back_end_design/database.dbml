@@ -1,0 +1,83 @@
+Project MI_DICCIONARIO_DE_MAESTROS_DB {
+  database_type: "PostgreSQL"
+  Note: "Base de datos principal del sistema"
+}
+
+Table PROFESORES {
+  ID uuid [primary key, not null]
+  ID_NOMBRE uuid [not null, note: 'Id del catalogo de nombres donde esta el nombre completo del profesor'] 
+}
+
+Table PROFESORES_MATERIAS [note: 'Tabla de cruze ya que la relacion entra profesores y materias son de muchos a muchos, un profesor puede impartir 1 o mas materias y una materia puede ser impartida por 1 o mas profesores'] {
+  ID uuid [primary key, not null]
+  ID_PROFESOR uuid [not null, note: 'Id del profesor quien imparte la materi']
+  CLAVE_MATERIA varchar2 [not null, note: 'Id del profesor quien imparte la materi']
+}
+
+Table NOMBRES [note: 'Catalogo de nombres de profesores, se realiza un catalogo de nombres porque se sabe que hay nombres repetidos minimo en la UPIICSA si hay nombres repetidos'] { 
+  ID uuid [primary key, not null]
+  NOMBRE_COMPLETO varchar2 [not null, note: 'Nombre y apellidos'] 
+}
+
+Table MATERIAS {
+  CLAVE varchar2 [primary key, not null, note: 'Clave de la materia dada por el saes o la unidad escolar'] 
+  ID_NOMBRE uuid [not null, note: 'Nombre de la materia que se puede repetir por cada plan de estudios o carrera']
+  ID_CARRERA uuid [not null, note: 'Carrera en la que se imparte dicha materia']
+  ID_PLAN uuid [not null, note: 'Plan de estudios en la que se imparte dicha materia']
+}
+
+Table NOMBRES_MATERIAS [note: 'Tabla que almacena los nombres de las materias, se hace un catalogo de nombres porque muchas materias tienen el mismo nombre pero diferente clave, como por ejemplo calculo que se imparte en bareas carreras'] {
+  ID uuid [primary key, not null]
+  NOMBRE varchar2 [not null, note: 'Nombre de la materia']
+} 
+
+Table PLANES {
+  ID uuid [primary key, not null]
+  FECHA date [not null, note: 'Fecha del plan de estudios']
+}
+
+Table CARRERAS {
+  ID uuid [primary key, not null]
+  NOMBRE varchar2 [not null, note: 'Nombre de la carrera']
+  ID_UNIDAD_ACADEMICA uuid [not null]
+} 
+
+Table UNIDADES_ACADEMICAS {
+  ID uuid [primary key, not null]
+  NOMBRE varchar2 [not null, note: 'Nombre de la escuela']
+}
+
+Table COMENTARIOS {
+  ID uuid [primary key, not null]
+  ID_PROFESOR_MATERIA uuid [not null, note: 'Se relaciona con la tabla de cruce entre las materias y los profesores']
+  COMENTARIO varchar2 [not null]
+  VOTOS_A_FAVOR integer [not null, default: 0, note: 'Cantidad de personas que votaron en estar de acuerdo al comentario que dejaron']
+  VOTOS_EN_CONTRA integer [not null, default: 0, note: 'Cantidad de personas que votaron en estar en desacuerdo al comentario que dejaron']
+  FECHA_CREACION date [not null]
+}
+
+Table CALIFICACIONES {
+  ID uuid [primary key, not null]
+  ID_PROFESOR_MATERIA uuid [not null]
+  DOMINIO_DEL_TEMA integer [not null, note: 'Mide qué tanto domina el profesor el contenido de la materia']
+  CLARIDAD_DE_EXPLICACION integer [not null, note: 'Evalúa qué tan claro y entendible explica los temas']
+  EVALUACION_JUSTA_Y_COHERENTE integer [not null, note: 'Indica si las evaluaciones son transparentes, coherentes y justas']
+  ASISTENCIA_Y_PUNTUALIDAD integer [not null, note: 'Mide la puntualidad y asistencia del profesor en las clases.']
+  DIFICULTAD_ADECUADA integer [not null, note: 'Refleja la dificultad percibida del curso o del método del profesor']
+  CARGA_DE_TRABAJO_ADECUADA integer [not null, note: 'Evalúa si la cantidad de tareas y actividades es adecuada']
+  RESPETO integer [not null, note: 'Mide el trato respetuoso del profesor hacia los estudiantes']
+  FLEXIBLE integer [not null, note: 'Evalúa la disposición del profesor para adaptarse y apoyar en situaciones especiales']
+  CAPACIDAD_DE_MOTIVACION integer [not null, note: 'Indica qué tanto motiva e inspira el profesor al grupo']
+  CONTROL_DEL_GRUPO integer [not null, note: 'Mide la capacidad del profesor para mantener orden y atención en el aula']
+  FECHA_CREACION date [not null]
+}
+
+Ref PROFESOR_NOMBRE: PROFESORES.ID_NOMBRE > NOMBRES.ID
+Ref PROFESORES_MATERIAS_PROFESOR: PROFESORES_MATERIAS.ID_PROFESOR > PROFESORES.ID
+Ref PROFESORES_MATERIAS_MATERIA: PROFESORES_MATERIAS.CLAVE_MATERIA > MATERIAS.CLAVE
+Ref MATERIA_NOMBRE_MATERIA: MATERIAS.ID_NOMBRE > NOMBRES_MATERIAS.ID
+Ref MATERIA_CARRERA: MATERIAS.ID_CARRERA > CARRERAS.ID
+Ref MATERIA_PLAN: MATERIAS.ID_PLAN > PLANES.ID
+Ref CARRERA_UNIDAD_ACADEMICA: CARRERAS.ID_UNIDAD_ACADEMICA > UNIDADES_ACADEMICAS.ID
+Ref COMENTARIOS_PROFESOR_MATERIA: COMENTARIOS.ID_PROFESOR_MATERIA > PROFESORES_MATERIAS.ID
+Ref CALIFICACIONES_PROFESOR_MATERIA: CALIFICACIONES.ID_PROFESOR_MATERIA > PROFESORES_MATERIAS.ID
